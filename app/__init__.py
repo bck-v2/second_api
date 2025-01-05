@@ -18,6 +18,7 @@ from pyramid_app_caseinterview.models import (
 )
 
 from .authorization import GlobalRootFactory, GlobalSecurityPolicy
+from add import x
 
 __version__ = pkg_resources.get_distribution(__name__).version
 
@@ -186,6 +187,9 @@ def get_config(settings=None):
     config.include(".routes")
 
     config.scan()
+
+    custom_json_renderer = CustomJSONRenderer()
+    config.add_renderer("json", custom_json_renderer)
     return config
 
 
