@@ -36,7 +36,9 @@ class API(View):
         request_method="GET",
     )
     def depthseries_api(self):
-        query = self.session.query(Depthseries).distinct(Depthseries.depth)
+
+        query = self.session.query(Depthseries).distinct(Depthseries.depth).filter(Depthseries.value.isnot(None))
+
         return [
             {
                 "id": str(q.id),
